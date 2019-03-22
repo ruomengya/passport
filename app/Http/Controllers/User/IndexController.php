@@ -35,8 +35,8 @@ class IndexController extends Controller
             $u = UserModel::where($where)->first();
             if($u){
                 $token = substr(md5(time() . mt_rand(1, 19990)), 6, 10);
-                setcookie('uid' , $u['uid'] , time()+86400 , '/' , 'cms.com' , false , true);
-                setcookie('token' , $token , time()+86400 , '/' , 'cms.com' , false , true);
+                setcookie('uid' , $u['uid'] , time()+86400 , '/' , 'anjingdehua.cn' , false , true);
+                setcookie('token' , $token , time()+86400 , '/' , 'anjingdehua.cn' , false , true);
                 Redis::del('token:'.$u['uid']);
                 Redis::hSet('token:'.$u['uid'] , 'web' , $token);
                 //Redis::hdel('');
