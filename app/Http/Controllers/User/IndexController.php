@@ -37,8 +37,10 @@ class IndexController extends Controller
                 $token = substr(md5(time() . mt_rand(1, 19990)), 6, 10);
                 setcookie('uid' , $u['uid'] , time()+86400 , '/' , 'cms.com' , false , true);
                 setcookie('token' , $token , time()+86400 , '/' , 'cms.com' , false , true);
-                Redis::set('str:u:token:web:'.$u['uid'] , $token);
-                Redis::settimeout('str:u:token:web:'.$u['uid'] , 86400);
+                Redis::del('token:'.$u['uid']);
+                Redis::hSet('token:'.$u['uid'] , 'web' , $token);
+                //Redis::hdel('');
+                //Redis::set('str:u:token:web:'.$u['uid'] , $token);
                 $request->session()->put('uid' , $u['uid']);
                 $request->session()->put('u_token' , $token);
                 $reponse = [
@@ -78,7 +80,8 @@ class IndexController extends Controller
         $u = UserModel::where($where)->first();
         if($u){
             $token = substr(md5(time() . mt_rand(1, 19990)), 6, 10);
-            Redis::set('str:u:token:api:'.$u['uid'] , $token);
+            Redis::del('token:'.$u['uid']);
+            Redis::hSet('token:'.$u['uid'] , 'app' , $token);
             $reponse = [
                 'error' => '0',
                 'msg' => '登陆成功',
