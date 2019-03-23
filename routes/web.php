@@ -21,4 +21,4 @@ Route::post('/phon/login','User\IndexController@phonLogin');
 
 Route::get('/home','User\IndexController@home');
 
-Route::post('/quit','User\IndexController@quit');
+Route::get('/quit','User\IndexController@quit');
