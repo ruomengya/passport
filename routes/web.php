@@ -19,4 +19,6 @@ Route::any('/login','User\IndexController@login');
 
 Route::post('/phon/login','User\IndexController@phonLogin');
 
-Route::any('/home','User\IndexController@home');
+Route::get('/home','User\IndexController@home');
+
+Route::post('/quit','User\IndexController@quit');
