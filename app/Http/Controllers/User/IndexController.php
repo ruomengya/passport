@@ -37,6 +37,7 @@ class IndexController extends Controller
                 $token = substr(md5(time() . mt_rand(1, 19990)), 6, 10);
                 setcookie('uid' , $u['uid'] , time()+86400 , '/' , 'anjingdehua.cn' , false , true);
                 setcookie('token' , $token , time()+86400 , '/' , 'anjingdehua.cn' , false , true);
+                setcookie('username' , $username , time()+86400 , '/' , 'anjingdehua.cn' , false , true);
                 Redis::del('token:'.$u['uid']);
                 Redis::hSet('token:'.$u['uid'] , 'web' , $token);
                 //Redis::hdel('');
