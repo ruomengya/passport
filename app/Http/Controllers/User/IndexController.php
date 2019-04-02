@@ -100,6 +100,7 @@ class IndexController extends Controller
     public function quit(){
         setcookie('uid' , null , time()-1 , '/' , 'anjingdehua.cn' , false , true);
         setcookie('token' , null , time()-1 , '/' , 'anjingdehua.cn' , false , true);
+        setcookie('username' , null , time()-1 , '/' , 'anjingdehua.cn' , false , true);
         header("location:https://whw.anjingdehua.cn");
     }
 }
